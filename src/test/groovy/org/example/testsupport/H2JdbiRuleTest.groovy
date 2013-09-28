@@ -1,11 +1,12 @@
-package org.example.dao
+package org.example.testsupport
 
-import org.example.H2JdbiRule
+import org.example.MyDAO
+import org.example.testsupport.H2JdbiRule
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 
-class MyDAOTest {
+class H2JdbiRuleTest {
     @Rule
     public H2JdbiRule jdbiRule = new H2JdbiRule();
 
@@ -30,6 +31,30 @@ class MyDAOTest {
     }
 
     @Test
+    void testInteractionWithPreviousTest() {
+        // Given
+        // When
+        List<String> names = dao.findAll()
+
+        // Then
+        assert names == []
+
+        dao.insert(2, "Dos");
+    }
+
+    @Test
+    void testInteractionWithPreviousTest2() {
+        // Given
+        // When
+        List<String> names = dao.findAll()
+
+        // Then
+        assert names == []
+
+        dao.insert(2, "Dos");
+    }
+
+    @Test
     void testFindAll() {
         // Given
         dao.insert(1, "Uno");
@@ -40,6 +65,6 @@ class MyDAOTest {
         List<String> names = dao.findAllWithLimit(2,1)
 
         // Then
-        assert names == Arrays.asList("Tres")
+        assert names == ["Tres"]
     }
 }

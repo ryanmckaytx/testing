@@ -1,4 +1,4 @@
-package org.example;
+package org.example.testsupport;
 
 import org.h2.jdbcx.JdbcDataSource;
 import org.junit.rules.ExternalResource;
@@ -13,7 +13,7 @@ public class H2JdbiRule extends ExternalResource {
     protected void before() throws Throwable {
         // using in-memory H2 database via a pooled DataSource
         JdbcDataSource jdbcDataSource = new JdbcDataSource();
-        jdbcDataSource.setURL("jdbc:h2:mem:test2:MODE=MySQL");
+        jdbcDataSource.setURL("jdbc:h2:mem:test2");
 
         DBI dbi = new DBI(jdbcDataSource);
         handle = dbi.open();

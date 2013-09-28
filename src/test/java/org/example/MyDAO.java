@@ -1,4 +1,4 @@
-package org.example.dao;
+package org.example;
 
 import org.skife.jdbi.v2.sqlobject.Bind;
 import org.skife.jdbi.v2.sqlobject.SqlQuery;
@@ -22,6 +22,9 @@ public interface MyDAO {
 
     @SqlQuery("select name from something where id = :id")
     String findNameById(@Bind("id") int id);
+
+    @SqlQuery("select name from something")
+    List<String> findAll();
 
     @SqlQuery("select name from something ORDER BY id LIMIT :offset,:limit")
     List<String> findAllWithLimit(@Bind("offset") int offset, @Bind("limit") int limit);
